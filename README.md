@@ -20,7 +20,7 @@
 
 A digital version of my resume with **light and dark themes**, **smooth animations**, a **resume download** and a **contact form** that lands straight in my inbox.
 
-👉 **[your-portfolio-link.vercel.app](https://prasad-nayak-zeta.vercel.app/)**
+👉 **[Prasad Nayak Portfolio](https://prasad-nayak-zeta.vercel.app/)**
 
 ---
 
