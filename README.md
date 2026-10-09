@@ -8,7 +8,7 @@
 
 <br/>
 
-[![Portfolio](https://img.shields.io/badge/Visit-Portfolio-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://your-portfolio-link.vercel.app)
+[![Portfolio](https://img.shields.io/badge/Visit-Portfolio-6366f1?style=for-the-badge&logo=vercel&logoColor=white)](https://prasad-nayak-zeta.vercel.app/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/nayakprasad)
 [![Email](https://img.shields.io/badge/Email-Say_Hello-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:worknayakprasad@gmail.com)
 
@@ -20,7 +20,7 @@
 
 A digital version of my resume with **light and dark themes**, **smooth animations**, a **resume download** and a **contact form** that lands straight in my inbox.
 
-👉 **[your-portfolio-link.vercel.app](https://your-portfolio-link.vercel.app)**
+👉 **[your-portfolio-link.vercel.app](https://prasad-nayak-zeta.vercel.app/)**
 
 ---
 
