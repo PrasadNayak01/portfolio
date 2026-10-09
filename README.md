@@ -22,7 +22,7 @@ A digital version of my resume with **light and dark themes**, **smooth animatio
 
 👉 **[your-portfolio-link.vercel.app](https://your-portfolio-link.vercel.app)**
 
-![Preview](./screenshots/preview.png)
+---
 
 ### 🚀 Projects
 
