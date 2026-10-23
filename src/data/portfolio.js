@@ -36,6 +36,25 @@ export const skills = {
 
 export const projects = [
   {
+    title: "Tradr",
+    subtitle: "Stock Trading & Portfolio Management Platform",
+    date: "Oct 2026",
+    description:
+      "MERN-stack stock trading platform featuring live market data integration, stock details, market indices, watchlist management and buy/sell order workflows. Includes a trading dashboard with holdings, positions and intraday stock chart data.",
+    tech: [
+      "React.js",
+      "JavaScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "Axios",
+    ],
+    live: "",
+    github: "https://github.com/PrasadNayak01/Tradr",
+  },
+  {
     title: "ExpenseEase",
     subtitle: "Personal Expense Tracker",
     date: "Aug 2026",
