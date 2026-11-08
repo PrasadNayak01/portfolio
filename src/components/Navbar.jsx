@@ -51,7 +51,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
       {/* Mobile Dropdown */}
       {open && (
-        <div className="fixed left-1/2 top-[76px] z-50 w-52 -translate-x-1/2 rounded-xl border border-neutral-800 bg-neutral-950 p-2 text-sm text-neutral-300 shadow-xl md:hidden">
+        <div className="fixed left-1/2 top-19 z-50 w-52 -translate-x-1/2 rounded-xl border border-neutral-800 bg-neutral-950 p-2 text-sm text-neutral-300 shadow-xl md:hidden">
           {links.map((link) => (
             <a
               key={link.name}
