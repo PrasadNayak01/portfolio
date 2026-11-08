@@ -117,7 +117,15 @@ export const projects = [
     image: "/projects/healthhub.png",
     description:
       "Digital health record management system developed for Smart India Hackathon 2025. Features authentication, appointment booking, digital health records, Stripe payment integration and role-based dashboards.",
-    tech: ["Node.js", "Express.js", "MySQL", "JavaScript", "Stripe"],
+    tech: [
+      "Node.js",
+      "Express.js",
+      "MySQL",
+      "JavaScript",
+      "Stripe",
+      "HTML5",
+      "CSS3",
+    ],
     github: "https://github.com/PrasadNayak01/HealthHub",
     live: "",
   },
