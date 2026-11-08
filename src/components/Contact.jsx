@@ -1,124 +1,178 @@
-import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
-import { FiSend, FiMail, FiMapPin } from "react-icons/fi";
-import Section from "./Section";
-import Reveal from "./Reveal";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import {
+  FiMail,
+  FiGithub,
+  FiLinkedin,
+  FiArrowUpRight,
+  FiSend,
+} from "react-icons/fi";
 import { profile } from "../data/portfolio";
 
-const field =
-  "w-full rounded-xl border border-slate-300 bg-transparent px-4 py-3 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 dark:border-slate-700";
-
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
 export default function Contact() {
-  const form = useRef();
-  const [status, setStatus] = useState("idle"); // idle | sending | success | error
-  const [errorMsg, setErrorMsg] = useState("");
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    // catches a missing/unread .env before calling EmailJS
-    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
-      console.error("EmailJS env variables:", {
-        SERVICE_ID,
-        TEMPLATE_ID,
-        PUBLIC_KEY,
-      });
-      setErrorMsg(
-        ".env values not found. Check the file name, location, VITE_ prefix, and restart npm run dev.",
-      );
-      setStatus("error");
-      return;
-    }
-
-    setStatus("sending");
-    setErrorMsg("");
-
-    // fills {{time}} in the EmailJS template
-    form.current.elements.time.value = new Date().toLocaleString("en-IN");
-
-    try {
-      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
-        publicKey: PUBLIC_KEY,
-      });
-      setStatus("success");
-      form.current.reset();
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      setErrorMsg(err?.text || err?.message || "Unknown error");
-      setStatus("error");
-    }
+    const subject = encodeURIComponent(`Portfolio enquiry from ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`,
+    );
+    window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`;
   };
 
   return (
-    <Section id="contact" title="Get In Touch">
-      <div className="grid gap-10 md:grid-cols-2">
-        <Reveal>
-          <p className="text-lg">
-            Have an opportunity or a project in mind? Send me a message and I'll
-            get back to you.
+    <section id="contact" className="px-5 py-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-10">
+          <p className="text-xs uppercase tracking-[0.3em] text-neutral-500">
+            Get in touch
           </p>
-          <div className="mt-6 space-y-3 text-sm">
-            <p className="flex items-center gap-3">
-              <FiMail className="text-indigo-500" /> {profile.email}
-            </p>
-            <p className="flex items-center gap-3">
-              <FiMapPin className="text-indigo-500" /> {profile.location}
-            </p>
-          </div>
-        </Reveal>
+          <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">
+            Let's connect.
+          </h2>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-neutral-400">
+            Have an opportunity, project idea or just want to connect? Feel free
+            to send me a message.
+          </p>
+        </div>
 
-        <Reveal delay={0.1}>
-          <form ref={form} onSubmit={handleSubmit} className="space-y-4">
-            <input
-              name="from_name"
-              required
-              placeholder="Your name"
-              className={field}
-            />
-            <input
-              name="reply_to"
-              type="email"
-              required
-              placeholder="Your email"
-              className={field}
-            />
-            <textarea
-              name="message"
-              required
-              rows="5"
-              placeholder="Your message"
-              className={field}
-            />
-            <input type="hidden" name="time" />
+        <div className="grid gap-6 md:grid-cols-5">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-neutral-800 bg-neutral-950 p-6 md:col-span-2"
+          >
+            <h3 className="text-lg font-semibold text-white">
+              Contact details
+            </h3>
+
+            <a
+              href={`mailto:${profile.email}`}
+              className="mt-7 flex items-center gap-4 text-neutral-400 transition hover:text-white"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900">
+                <FiMail size={19} />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-xs text-neutral-500">Email</span>
+                <span className="mt-1 block break-all text-sm">
+                  {profile.email}
+                </span>
+              </span>
+              <FiArrowUpRight className="ml-auto shrink-0" />
+            </a>
+
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 flex items-center gap-4 text-neutral-400 transition hover:text-white"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900">
+                <FiGithub size={19} />
+              </span>
+              <span>
+                <span className="block text-xs text-neutral-500">GitHub</span>
+                <span className="mt-1 block text-sm">PrasadNayak01</span>
+              </span>
+              <FiArrowUpRight className="ml-auto" />
+            </a>
+
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-5 flex items-center gap-4 text-neutral-400 transition hover:text-white"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900">
+                <FiLinkedin size={19} />
+              </span>
+              <span>
+                <span className="block text-xs text-neutral-500">LinkedIn</span>
+                <span className="mt-1 block text-sm">Connect with me</span>
+              </span>
+              <FiArrowUpRight className="ml-auto" />
+            </a>
+          </motion.div>
+
+          <motion.form
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-2xl border border-neutral-800 bg-neutral-950 p-6 md:col-span-3"
+          >
+            <h3 className="mb-6 text-lg font-semibold text-white">
+              Send me a message
+            </h3>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              <div>
+                <label
+                  htmlFor="contact-name"
+                  className="mb-2 block text-xs text-neutral-400"
+                >
+                  Your Name
+                </label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  required
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  placeholder="Enter your name"
+                  className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-white outline-none transition placeholder:text-neutral-600 focus:border-neutral-500"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="contact-email"
+                  className="mb-2 block text-xs text-neutral-400"
+                >
+                  Your Email
+                </label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  required
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  placeholder="Enter your email"
+                  className="w-full rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-white outline-none transition placeholder:text-neutral-600 focus:border-neutral-500"
+                />
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <label
+                htmlFor="contact-message"
+                className="mb-2 block text-xs text-neutral-400"
+              >
+                Message
+              </label>
+              <textarea
+                id="contact-message"
+                required
+                rows={5}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                placeholder="Write your message..."
+                className="w-full resize-none rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 text-sm text-white outline-none transition placeholder:text-neutral-600 focus:border-neutral-500"
+              />
+            </div>
 
             <button
               type="submit"
-              disabled={status === "sending"}
-              className="btn-primary disabled:opacity-60"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-300"
             >
-              <FiSend /> {status === "sending" ? "Sending..." : "Send Message"}
+              Send Message <FiSend size={15} />
             </button>
-
-            {status === "success" && (
-              <p className="text-sm text-green-600">
-                Message sent! I'll reply soon.
-              </p>
-            )}
-            {status === "error" && (
-              <div className="text-sm text-red-500">
-                <p>Something went wrong. Please email me directly.</p>
-                {errorMsg && (
-                  <p className="mt-1 text-xs opacity-80">Reason: {errorMsg}</p>
-                )}
-              </div>
-            )}
-          </form>
-        </Reveal>
+          </motion.form>
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }

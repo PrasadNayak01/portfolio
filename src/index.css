@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 html {
@@ -6,18 +7,120 @@ html {
 }
 
 body {
-  font-family: "Inter", system-ui, sans-serif;
-  @apply bg-white text-slate-700 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-300;
+  margin: 0;
+  min-width: 320px;
+  background: #000000;
+  color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.card {
-  @apply rounded-2xl border border-slate-200 bg-white/70 p-6 backdrop-blur transition dark:border-slate-800 dark:bg-slate-900/60;
+* {
+  box-sizing: border-box;
 }
 
-.btn-primary {
-  @apply inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-3 font-medium text-white shadow-lg shadow-indigo-500/30 transition hover:-translate-y-0.5 hover:bg-indigo-500;
+/* =================================
+   LIGHT THEME
+================================= */
+
+html:not(.dark) body {
+  background: #f5f5f4;
+  color: #171717;
 }
 
-.btn-outline {
-  @apply inline-flex items-center gap-2 rounded-full border border-slate-300 px-6 py-3 font-medium transition hover:-translate-y-0.5 hover:border-indigo-500 hover:text-indigo-600 dark:border-slate-700 dark:hover:text-indigo-400;
+/* Main backgrounds */
+html:not(.dark) .bg-black,
+html:not(.dark) .bg-neutral-950 {
+  background-color: #ffffff !important;
+}
+
+html:not(.dark) .bg-neutral-900,
+html:not(.dark) .bg-neutral-900\/60,
+html:not(.dark) .bg-neutral-900\/70 {
+  background-color: #fafafa !important;
+}
+
+/* Navbar */
+html:not(.dark) .bg-black\/85 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #e5e5e5 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Cards and borders */
+html:not(.dark) .border-neutral-800 {
+  border-color: #e5e5e5 !important;
+}
+
+html:not(.dark) .border-neutral-700 {
+  border-color: #d4d4d4 !important;
+}
+
+html:not(.dark) .border-neutral-600 {
+  border-color: #c4c4c4 !important;
+}
+
+/* Text colors */
+html:not(.dark) .text-white,
+html:not(.dark) .text-neutral-200,
+html:not(.dark) .text-neutral-300 {
+  color: #171717 !important;
+}
+
+html:not(.dark) .text-neutral-400 {
+  color: #525252 !important;
+}
+
+html:not(.dark) .text-neutral-500 {
+  color: #666666 !important;
+}
+
+html:not(.dark) .text-neutral-600 {
+  color: #737373 !important;
+}
+
+/* Technology icon containers */
+html:not(.dark) .bg-neutral-900\/70 {
+  background-color: #f5f5f5 !important;
+}
+
+html:not(.dark) .group\/tech:hover .bg-neutral-800 {
+  background-color: #e5e5e5 !important;
+}
+
+/* Tooltip */
+html:not(.dark) .bg-neutral-800.text-white {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+/* Hover effects */
+html:not(.dark) .hover\:text-white:hover {
+  color: #000000 !important;
+}
+
+html:not(.dark) .hover\:bg-neutral-900:hover {
+  background-color: #eeeeee !important;
+}
+
+html:not(.dark) .hover\:border-neutral-600:hover {
+  border-color: #a3a3a3 !important;
+}
+
+/* Form fields */
+html:not(.dark) input,
+html:not(.dark) textarea {
+  background-color: #fafafa;
+  color: #171717;
+  border-color: #d4d4d4;
+}
+
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: #a3a3a3;
+}
+
+/* Selection */
+html:not(.dark) ::selection {
+  background: #171717;
+  color: #ffffff;
 }

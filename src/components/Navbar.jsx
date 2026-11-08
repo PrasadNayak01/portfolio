@@ -1,91 +1,69 @@
 import { useState } from "react";
-import { FiSun, FiMoon, FiMenu, FiX, FiDownload } from "react-icons/fi";
-import { profile } from "../data/portfolio";
+import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 
 const links = [
-  "About",
-  "Skills",
-  "Projects",
-  "Education",
-  "Certificates",
-  "Contact",
+  { name: "About", href: "#about" },
+  { name: "Career", href: "#career" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar({ theme, toggleTheme }) {
   const [open, setOpen] = useState(false);
 
+  const closeMenu = () => setOpen(false);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/60 bg-white/70 backdrop-blur-lg dark:border-slate-800/60 dark:bg-slate-950/70">
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a
-          href="#home"
-          className="text-lg font-bold text-slate-900 dark:text-white"
-        >
-          Prasad<span className="text-indigo-500">.</span>
-        </a>
-
-        <ul className="hidden items-center gap-8 md:flex">
-          {links.map((l) => (
-            <li key={l}>
-              <a
-                href={`#${l.toLowerCase()}`}
-                className="text-sm font-medium transition hover:text-indigo-500"
-              >
-                {l}
-              </a>
-            </li>
+    <>
+      <nav className="fixed left-1/2 top-5 z-50 flex -translate-x-1/2 items-center gap-5 whitespace-nowrap rounded-full border border-neutral-700 bg-black/85 px-5 py-3 text-xs text-neutral-300 shadow-lg backdrop-blur-xl sm:gap-7 sm:px-6">
+        {/* Desktop Navigation */}
+        <div className="hidden items-center gap-7 md:flex">
+          {links.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="transition hover:text-white"
+            >
+              {link.name}
+            </a>
           ))}
-        </ul>
-
-        <div className="flex items-center gap-3">
-          <a
-            href={profile.resume}
-            download
-            className="hidden items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-indigo-500 sm:inline-flex"
-          >
-            <FiDownload /> Resume
-          </a>
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="rounded-full border border-slate-300 p-2 transition hover:border-indigo-500 dark:border-slate-700"
-          >
-            {theme === "dark" ? <FiSun /> : <FiMoon />}
-          </button>
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden"
-            aria-label="Menu"
-          >
-            {open ? <FiX size={22} /> : <FiMenu size={22} />}
-          </button>
         </div>
+
+        {/* Theme Toggle */}
+        <button
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+          className="transition hover:text-white"
+        >
+          {theme === "dark" ? <FiSun size={16} /> : <FiMoon size={16} />}
+        </button>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setOpen(!open)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="md:hidden transition hover:text-white"
+        >
+          {open ? <FiX size={17} /> : <FiMenu size={17} />}
+        </button>
       </nav>
 
+      {/* Mobile Dropdown */}
       {open && (
-        <ul className="space-y-4 border-t border-slate-200 bg-white px-6 py-4 dark:border-slate-800 dark:bg-slate-950 md:hidden">
-          {links.map((l) => (
-            <li key={l}>
-              <a
-                href={`#${l.toLowerCase()}`}
-                onClick={() => setOpen(false)}
-                className="block font-medium"
-              >
-                {l}
-              </a>
-            </li>
-          ))}
-          <li>
+        <div className="fixed left-1/2 top-[76px] z-50 w-52 -translate-x-1/2 rounded-xl border border-neutral-800 bg-neutral-950 p-2 text-sm text-neutral-300 shadow-xl md:hidden">
+          {links.map((link) => (
             <a
-              href={profile.resume}
-              download
-              className="font-medium text-indigo-500"
+              key={link.name}
+              href={link.href}
+              onClick={closeMenu}
+              className="block rounded-lg px-4 py-3 transition hover:bg-neutral-800 hover:text-white"
             >
-              Download Resume
+              {link.name}
             </a>
-          </li>
-        </ul>
+          ))}
+        </div>
       )}
-    </header>
+    </>
   );
 }

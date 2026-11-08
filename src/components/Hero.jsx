@@ -1,91 +1,101 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { FiDownload, FiMail } from "react-icons/fi";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { FiArrowUpRight, FiDownload } from "react-icons/fi";
+import { HiChevronDoubleDown } from "react-icons/hi";
 import { profile } from "../data/portfolio";
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden px-6 pt-16"
+      className="relative flex min-h-screen items-center justify-center px-5 pt-24 text-center"
     >
-      {/* animated background blobs */}
-      <motion.div
-        className="absolute -left-20 top-20 h-72 w-72 rounded-full bg-indigo-500/30 blur-3xl"
-        animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute -right-10 bottom-20 h-80 w-80 rounded-full bg-fuchsia-500/20 blur-3xl"
-        animate={{ x: [0, -50, 0], y: [0, -40, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <div className="relative mx-auto w-full max-w-6xl">
+      <div className="mx-auto max-w-5xl">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-4 font-medium text-indigo-500"
+          transition={{ duration: 0.6 }}
+          className="mb-5 text-xs font-medium uppercase tracking-[0.35em] text-neutral-500"
         >
-          Hi, I'm
+          Hello, I'm
         </motion.p>
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white md:text-7xl"
+          transition={{ duration: 0.7 }}
+          className="text-5xl font-semibold tracking-tight text-white sm:text-7xl md:text-8xl"
         >
           {profile.name}
         </motion.h1>
         <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mt-4 bg-linear-to-r from-indigo-500 to-fuchsia-500 bg-clip-text text-2xl font-bold text-transparent md:text-4xl"
+          transition={{ delay: 0.2, duration: 0.7 }}
+          className="mt-5 text-lg font-medium text-neutral-400 sm:text-2xl"
         >
           {profile.role}
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-6 max-w-xl text-lg"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-neutral-500 sm:text-base"
         >
           {profile.tagline}
         </motion.p>
-
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          transition={{ delay: 0.5 }}
+          className="mt-8 flex items-center justify-center gap-5"
         >
-          <a href={profile.resume} download className="btn-primary">
-            <FiDownload /> Download Resume
-          </a>
-          <a href="#contact" className="btn-outline">
-            <FiMail /> Contact Me
-          </a>
           <a
             href={profile.github}
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="p-2 text-2xl transition hover:scale-110 hover:text-indigo-500"
+            className="text-neutral-400 transition hover:text-white"
           >
-            <FaGithub />
+            <FaGithub size={22} />
           </a>
           <a
             href={profile.linkedin}
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="p-2 text-2xl transition hover:scale-110 hover:text-indigo-500"
+            className="text-neutral-400 transition hover:text-white"
           >
-            <FaLinkedin />
+            <FaLinkedinIn size={22} />
+          </a>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mt-9 flex flex-wrap justify-center gap-3"
+        >
+          <a
+            href={profile.resume}
+            download
+            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-neutral-300"
+          >
+            <FiDownload size={16} /> Download Resume
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-700 px-6 py-3 text-sm font-medium text-white transition hover:border-neutral-400"
+          >
+            Let's Connect <FiArrowUpRight size={16} />
           </a>
         </motion.div>
       </div>
+      <a
+        href="#about"
+        aria-label="Scroll to About"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-neutral-500 transition hover:text-white"
+      >
+        <HiChevronDoubleDown size={25} />
+      </a>
     </section>
   );
 }
