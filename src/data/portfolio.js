@@ -139,13 +139,19 @@ export const certificates = [
   },
   {
     title: "Fundamentals of Object Oriented Programming",
-    issuer: "NPTEL, IIT Roorkee",
+    issuer: "NPTEL - Indian Institute of Technology, Roorkee",
     image: "/certificates/nptel-oop.jpg",
   },
   {
     title: "Database Management System",
-    issuer: "NPTEL, IIT Kharagpur",
+    issuer: "NPTEL - Indian Institute of Technology, Kharagpur",
     image: "/certificates/nptel-dbms.jpg",
+  },
+  {
+    title: "Software Testing",
+    issuer:
+      "NPTEL - International Institute of Information Technology, Bangalore",
+    image: "/certificates/nptel-software-testing.jpg",
   },
 ];
 
